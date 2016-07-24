@@ -75,16 +75,14 @@ Connection.prototype.connect = function() {
             host: options.socks.host,
             port: options.socks.port || 8080,
             user: options.socks.user,
-            pass: options.socks.pass,
-            localAddress: outgoing_addr
+            pass: options.socks.pass
         });
     } else {
         if (options.tls || options.ssl) {
             that.socket = tls.connect({
                 host: ircd_host,
                 port: ircd_port,
-                rejectUnauthorized: options.rejectUnauthorized,
-                localAddress: outgoing_addr
+                rejectUnauthorized: options.rejectUnauthorized
             });
 
             socket_connect_event_name = 'secureConnect';
@@ -92,8 +90,7 @@ Connection.prototype.connect = function() {
         } else {
             that.socket = net.connect({
                 host: ircd_host,
-                port: ircd_port,
-                localAddress: outgoing_addr
+                port: ircd_port
             });
 
             socket_connect_event_name = 'connect';
